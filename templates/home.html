@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #4CAF50;} /* Red */
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+.button5 {background-color: #555555;} /* Black */
+</style>
+</head>
+<body bgcolor="black">
+<title>TWS_MNS</title>
+
+<h1 style="color:#ff9b17;" align="center">FETCH HISTORICAL DATA</h1>
+<form action="ticker" method="post">
+
+    <table style="width:100%" align="left"  cellpadding="0" cellspacing="0" border="0">
+
+
+<div>  <tr>
+    <div>
+        <th><font color="white">TICKER</th>
+        <td><input name="ticker" type="text" /></td>
+    </tr>
+    </div>
+    <tr>
+        <th><font color="white">TYPE </th>
+    <td>
+<select name="type">
+  <option value="STK">STK</option>
+  <option value="FUT">FUT</option>
+  <option value="CURR">CURR</option>
+</select>
+</td>
+</div>
+</tr>
+
+
+        <tr>
+<div>
+<th><font color="white">EXCHANGE</th>
+    <td>
+<select name="exc">
+  <option value="SMART">SMART</option>
+  <option value="GLOBEX">GLOBEX</option>
+  <option value="NYMEX">NYMEX</option>
+</select>
+    </td>
+</div>
+</tr>
+
+        <tr>
+<div>
+<th><font color="white">CURRENCY</th>
+    <td>
+<select name="cur">
+  <option value="USD">USD</option>
+</select>
+</div>
+        </td>
+</tr>
+
+
+        <tr>
+    <div>
+        <th><font color="white">ENDDATE</th>
+        <td>
+        <input type="text" name="end" list="end"/>
+        <datalist id="end">
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
+              <option value="1997">1997</option>
+              <option value="1996">1996</option>
+              <option value="1995">1995</option>
+              <option value="1994">1994</option>
+              <option value="1993">1993</option>
+              <option value="1992">1992</option>
+              <option value="1991">1991</option>
+              <option value="1990">1990</option>
+        </datalist>
+            </td>
+    </div>
+<tr>
+        <th></th>
+<td>
+        <input type="text" name="month" list="month"/>
+        <datalist id="month">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </datalist>
+</td>
+        <td>
+            <th><font color="red">FORMAT: YYYY/MM/DD [eg:2017/12/30]</th>
+        </td>
+    </tr>
+        <tr>
+            <th></th>
+<td>
+            <input type="text" name="day" list="day"/>
+            <datalist id="day">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="14">13</option>
+            <option value="15">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+
+        </datalist>
+</td>
+        </tr>
+    </div>
+
+
+
+
+
+
+
+<tr>
+
+        <div>
+       <th><font color="white">EXPIRY</th>
+            <td>
+        <input type="text" name="end1" list="end1"/>
+        <datalist id="end1">
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
+              <option value="1997">1997</option>
+              <option value="1996">1996</option>
+              <option value="1995">1995</option>
+              <option value="1994">1994</option>
+              <option value="1993">1993</option>
+              <option value="1992">1992</option>
+              <option value="1991">1991</option>
+              <option value="1990">1990</option>
+        </datalist>
+            </td>
+        </div>
+</tr>
+        <tr>
+            <th></th>
+            <td>
+        <input type="text" name="month1" list="month1"/>
+        <datalist id="month1">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </datalist>
+            </td>
+        </tr>
+        <tr>
+
+            <tr>
+    <th></th>
+        <td>
+            <input type="text" name="day1" list="day1"/>
+            <datalist id="day1">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="14">13</option>
+            <option value="15">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+                <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+
+        </datalist>
+    </div>
+
+        </td>
+    </tr>
+
+          <tr>
+    <div>
+        <th><font color="white">MULTIPLIER</th>
+        <td><input name="mul" type="text" /></td>
+    </tr>
+    </div>
+
+                <tr>
+    <div>
+        <th><font color="white">FETCH DATA FOR</th>
+        <td><input name="count" type="text" /></td>
+    </tr>
+    </div>
+        <tr>
+            <th></th>
+                <td>
+<select name="count1">
+  <option value="D">D</option>
+    <option value="W">W</option>
+  <option value="M">M</option>
+  <option value="Y">Y</option>
+</select>
+    </td>
+        </tr>
+
+
+
+        <tr>
+            <th><font color="white">DATA SIZE</th>
+            <td>
+        <input type="text" name="ds" list="ds"/>
+        <datalist id="ds">
+            <option value="1 hour">1 hour</option>
+            <option value="2 hours">2 hours</option>
+            <option value="3 hours">3 hours</option>
+            <option value="4 hours">4 hours</option>
+            <option value="8 hours">8 hours</option>
+            <option value="1 day">1 day</option>
+            <option value="1 W">1 W</option>
+            <option value="1 M">1 M</option>
+        </datalist>
+            </td>
+        </tr>
+
+                <tr>
+                    <th><font color="white">FILE NAME </font></th>
+
+        <td><input name="fname" type="text" />
+       </td>
+
+        </tr>
+        <tr>
+            <th><font color="white">CHOOSE DIRECTORY</th>
+            <td><select name="dir">
+  <option value="D:/">D:/</option>
+  <option value="C:/">C:/</option>
+  <option value="E:/">E:/</option>
+</select></td>
+
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+    <th>
+
+
+
+
+
+
+    </th>
+</tr>
+
+<tr>
+    <th>
+
+    </th>
+</tr>
+
+
+
+               <tr>
+    <th>
+
+    </th>
+<td>
+      <div>
+
+<button type="submit" class="button button3"  style="vertical-align:middle" value="Submit"><span>FETCH </span></button></td>
+    </div>
+</td>
+</tr>
+    </table>
+</form>
+</body>
+</html>
+
+
+
+
